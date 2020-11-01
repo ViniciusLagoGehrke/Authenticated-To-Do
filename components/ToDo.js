@@ -8,7 +8,7 @@ export default function ToDo({ toDo }) {
   const handleToggleCompleted = () => {
     const updatedFields = {
       ...toDo.fields,
-      completed: !toDo.fields.completed
+      completed: !toDo.fields.completed,
     }
     const updatedToDo = {id: toDo.id, fields: updatedFields };
     updateToDo(updatedToDo);

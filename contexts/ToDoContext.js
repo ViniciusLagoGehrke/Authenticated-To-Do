@@ -6,7 +6,7 @@ const ToDoProvider = ({children}) => {
   
   const [toDos, setToDos] = useState([]);
 
-  const refreshToDo = async () => {
+  const refreshToDos = async () => {
     try{
       const res = await fetch('/api/getToDos');
       const latestToDos = await res.json();
@@ -35,7 +35,7 @@ const ToDoProvider = ({children}) => {
   const updateToDo = async (updatedToDo) => {
     try{
       const res = await fetch('/api/updateToDo', {
-        method: 'POST',
+        method: 'PUT',
         body: JSON.stringify(updatedToDo),
         headers: {'Content-Type': 'application/json'}
       });
@@ -72,7 +72,7 @@ const ToDoProvider = ({children}) => {
       value={{
         toDos,
         setToDos,
-        refreshToDo,
+        refreshToDos,
         updateToDo,
         deleteToDo,
         addToDo,

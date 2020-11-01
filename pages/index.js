@@ -4,10 +4,12 @@ import Navbar from '../components/NavBar'
 import ToDo from '../components/ToDo';
 import { table, minifyRecord } from './api/utils/Airtable';
 import { ToDoContext } from '../contexts/ToDoContext';
+import auth0 from './api/utils/auth0';
 
-export default function Home({initialToDos}) {
+export default function Home({ initialToDos, user }) {
   
   const {toDos, setToDos} = useContext(ToDoContext);
+  console.log(user);
   useEffect(() => {
     setToDos(initialToDos);
   }, []);
@@ -18,7 +20,7 @@ export default function Home({initialToDos}) {
         <title>Authenticated ToDo App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar />
+      <Navbar user={user} />
       <main>
         <h1>ToDo app</h1>
         <ul>
@@ -36,11 +38,14 @@ export default function Home({initialToDos}) {
 }
 
 export async function getServerSideProps(context) {
+  const session = await auth0.getSession(context.req);
+
   try {
     const toDos = await table.select({}).firstPage();
     return {
       props: {
-        initialToDos: minifyRecord(toDos)
+        initialToDos: minifyRecord(toDos),
+        user: session?.user || null
       }
     }
   } catch (err) {
