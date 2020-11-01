@@ -37,8 +37,8 @@ export default function Home({ initialToDos, user }) {
             </ul>
           </>
         )}
+        {!user && <p>You should log in to save your ToDos</p>}
       </main>
-
     </div>
   )
 }
