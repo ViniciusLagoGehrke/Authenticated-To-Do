@@ -5,11 +5,12 @@ import ToDo from '../components/ToDo';
 import { table, minifyRecord } from './api/utils/Airtable';
 import { ToDoContext } from '../contexts/ToDoContext';
 import auth0 from './api/utils/auth0';
+import ToDoForm from '../components/ToDoForm';
 
 export default function Home({ initialToDos, user }) {
   
   const {toDos, setToDos} = useContext(ToDoContext);
-  console.log(user);
+  
   useEffect(() => {
     setToDos(initialToDos);
   }, []);
@@ -22,15 +23,20 @@ export default function Home({ initialToDos, user }) {
       </Head>
       <Navbar user={user} />
       <main>
-        <h1>ToDo app</h1>
-        <ul>
-          {toDos && toDos.map(toDo => 
-              <ToDo
-                key={toDo.id}
-                toDo={toDo}
-              />
-          )}
-        </ul>
+        {user && (
+          <>
+            <h1 className="text-2xl text-center mb-4">My ToDo</h1>
+            <ToDoForm />
+            <ul>
+              {toDos && toDos.map(toDo => 
+                  <ToDo
+                    key={toDo.id}
+                    toDo={toDo}
+                  />
+              )}
+            </ul>
+          </>
+        )}
       </main>
 
     </div>
