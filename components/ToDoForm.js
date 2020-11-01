@@ -12,7 +12,7 @@ export default function ToDoForm() {
     console.log(toDo);
   }
   return (
-    <from className="form my-6" onSubmit={handleSubmit}>
+    <Form className="form my-6" onSubmit={handleSubmit}>
       <div className="flex flex-col text-sm mb-2">
         <label className="font-bold mb-2 text-gray-800" htmlFor="toDo">ToDo</label>
         <input
@@ -32,6 +32,6 @@ export default function ToDoForm() {
       >
         Submit
       </button>
-    </from>
+    </Form>
   )
 }

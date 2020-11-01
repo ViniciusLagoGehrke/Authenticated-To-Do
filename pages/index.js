@@ -45,9 +45,15 @@ export default function Home({ initialToDos, user }) {
 
 export async function getServerSideProps(context) {
   const session = await auth0.getSession(context.req);
-
+  let toDos = [];
   try {
-    const toDos = await table.select({}).firstPage();
+    if(session?.user){
+      toDos = await table
+        .select({
+          filterByFormula: `userId = ${session.user.sub}`
+        })
+        .firstPage();
+    }
     return {
       props: {
         initialToDos: minifyRecord(toDos),
