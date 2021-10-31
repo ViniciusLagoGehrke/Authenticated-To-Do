@@ -1,3 +1,15 @@
+# Authenticated-To-Do
+
+<p>
+  <a href="https://github.com/ViniciusLagoGehrke">
+      <img src="https://img.shields.io/badge/author-Vinicius-blue?style=flat" alt="author">
+  </a>
+  <img src="https://img.shields.io/github/languages/count/ViniciusLagoGehrke/Authenticated-To-Do?color=blue&style=flat">
+  <img src="https://img.shields.io/github/languages/top/ViniciusLagoGehrke/Authenticated-To-Do?color=blue&style=flat">
+</p>
+
+## About this project
+
 This is an authenticated Todo app that uses Next.js, Airtable, Tailwind CSS, and Auth0.
 
 ![Screenshot of Todo App](desktop-preview.jpg?raw=true)
